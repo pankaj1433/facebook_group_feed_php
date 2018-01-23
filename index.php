@@ -134,5 +134,7 @@ if(isset($accessToken)){
                 echo '</pre>';
             ?>
     </div>
+    <br><br><br><br><br>
+    <a href='group.php' >go to group feeds</group>
 </body>
 </html>
