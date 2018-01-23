@@ -1,3 +1,4 @@
 <?php
-echo 'hi landing'
+echo 'hi landing';
+print_r($_SESSION);
 ?>
