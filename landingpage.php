@@ -1,4 +1,7 @@
 <?php
+session_start();
 echo 'hi landing';
-print_r($_SESSION);
+echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>';
 ?>
