@@ -15,12 +15,16 @@ $fb = new \Facebook\Facebook([
     'app_secret' => $appSecret,
     'default_graph_version' => 'v2.11',
 ]);
+ 
+$long_live_token = $fb->request("GET', '/oauth/access_token?grant_type=fb_exchange_token&client_id=$appId&client_secret=$appSecret&fb_exchange_token=$_SESSION['facebook_access_token']");
 
 $fb->setDefaultAccessToken('user-access-token');
 
 $response = $fb->request('GET', '/143498529659602/feed');
 
 echo '<pre>';
+var_dump($long_live_token);
+echo '/n';
 var_dump($response);
 echo '</pre>';
 
