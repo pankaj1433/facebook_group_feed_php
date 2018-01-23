@@ -6,7 +6,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  */
 $appId         = '145746932777961'; //Facebook App ID
 $appSecret     = '99c46fda46782a33b98e2e3fd12c3c6f'; //Facebook App Secret
-$redirectURL   = 'http://localhost/landingpage.php'; //Callback URL
+$redirectURL   = __DIR__ .'/landingpage.php'; //Callback URL
 $fbPermissions = array('email');  //Optional permissions
 
 $fb = new \Facebook\Facebook([
