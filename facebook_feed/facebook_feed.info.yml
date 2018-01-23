@@ -1,0 +1,11 @@
+name:         Facebook Feed
+type:         module
+description:  Provides a simple block that displays a themable list of posts from a facebook user, page, group, etc.
+# core:         8.x
+package:      Social
+
+# Information added by Drupal.org packaging script on 2017-07-30
+version: '8.x-1.0-beta1'
+core: '8.x'
+project: 'facebook_feed'
+datestamp: 1501398548
