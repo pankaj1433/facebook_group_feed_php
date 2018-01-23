@@ -16,7 +16,7 @@ $fb = new \Facebook\Facebook([
 ]);
 
 $helper = $fb->getRedirectLoginHelper();
-
+echo "this is test APP";
 try {
   if(isset($_SESSION['facebook_access_token'])){
       $accessToken = $_SESSION['facebook_access_token'];
