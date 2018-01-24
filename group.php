@@ -19,31 +19,19 @@ $fb = new \Facebook\Facebook([
 $helper = $fb->getRedirectLoginHelper();
 
 //get access token
-try {
-    if(isset($_SESSION['facebook_access_token'])){
-        $accessToken = $_SESSION['facebook_access_token'];
-    }else{
-          $accessToken = $helper->getAccessToken();
-    }
-  } catch(FacebookResponseException $e) {
-     echo 'Graph returned an error: ' . $e->getMessage();
-      exit;
-  } catch(FacebookSDKException $e) {
-    echo 'Facebook SDK returned an error: ' . $e->getMessage();
-      exit;
-  }
+
 
  
 
-    // $long_live_token = $fb->request('GET', '/oauth/access_token?  
-    // grant_type=fb_exchange_token&  
-    // client_id='.$appId.'&
-    // client_secret='.$appSecret.'&
-    // fb_exchange_token='.$_SESSION['facebook_access_token']);
+    $long_live_token = $fb->request('GET', '/oauth/access_token?  
+    grant_type=fb_exchange_token&  
+    client_id=145746932777961&
+    client_secret=99c46fda46782a33b98e2e3fd12c3c6f&
+    fb_exchange_token=EAACEjlonwZBkBABSxz1oIDerJumY7uz0PXbDyZC1dVdtUIZAijY5sk74TDIsjkpZAFgscNZCVg7NzwwG2ZAbTcpB2KGQttON4352tQuzVxCLmi4XjOlOUEvRs5jtibftRsgyJsEYZC8tswfDbygL9C7hPxe9e5mgvBxd9XnvsyjVgzckF7zQQcwIVywRWb2A6oZD');
 
 //     var_dump($long_live_token);
 //     echo('hellooooooooooo');
-// $fb->setDefaultAccessToken($long_live_token);
+$fb->setDefaultAccessToken($long_live_token);
 
 $response = $fb->request('GET', '/143498529659602/feed');
 
