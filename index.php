@@ -6,7 +6,7 @@ session_start();
  */
 $appId         = '145746932777961'; //Facebook App ID
 $appSecret     = '99c46fda46782a33b98e2e3fd12c3c6f'; //Facebook App Secret
-$redirectURL   = 'https://facebook-group-test-app.herokuapp.com'; //Callback URL
+$redirectURL   = 'https://fb-group-pankaj.herokuapp.com'; //Callback URL
 $fbPermissions = array('email');  //Optional permissions
 
 $fb = new \Facebook\Facebook([
