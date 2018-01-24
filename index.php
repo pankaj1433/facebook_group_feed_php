@@ -124,8 +124,10 @@ if(isset($accessToken)){
 </style>
 </head>
 <body>
-    <h1>hi</h1>
-    <div><?php $_SESSION['facebook_access_token'] ?></div>
+    <h1>hello</h1>
+    <div><?php echo accessToken; ?></div>
+    <h3>session \/</h3>
+    <div><?php vardump($_SESSION['facebook_access_token']); ?></div>
     <!-- Display login button / Facebook profile information -->
     <div><?php var_dump($_SESSION['feeds']); ?></div>
     <div>
