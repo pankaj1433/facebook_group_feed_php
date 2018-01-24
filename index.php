@@ -47,7 +47,7 @@ if (isset($accessToken)) {
 	}
 	// redirect user back to app when page receives $_GET['code'] variable
 	if (isset($_GET['code'])) {
-		echo "<script>window.top.location.href='https://apps.facebook.com/APP_NAMESPACE';</script>";
+		echo "<script>window.top.location.href='https://facebookte.herokuapp.com';</script>";
 		exit;
 	}
 	
@@ -59,7 +59,7 @@ if (isset($accessToken)) {
 		if ($e->getCode() == 190) {
 			unset($_SESSION['facebook_access_token']);
 			$helper = $fb->getRedirectLoginHelper();
-			$loginUrl = $helper->getLoginUrl('https://apps.facebook.com/APP_NAMESPACE/', $permissions);
+			$loginUrl = $helper->getLoginUrl('https://facebookte.herokuapp.com', $permissions);
 			echo "<script>window.top.location.href='".$loginUrl."'</script>";
 			exit;
 		}
@@ -87,6 +87,6 @@ if (isset($accessToken)) {
   	// Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
 } else {
 	$helper = $fb->getRedirectLoginHelper();
-	$loginUrl = $helper->getLoginUrl('https://apps.facebook.com/APP_NAMESPACE/', $permissions);
+	$loginUrl = $helper->getLoginUrl('https://facebookte.herokuapp.com', $permissions);
 	echo "<script>window.top.location.href='".$loginUrl."'</script>";
 }
