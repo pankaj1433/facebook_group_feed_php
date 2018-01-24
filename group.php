@@ -23,11 +23,7 @@ $helper = $fb->getRedirectLoginHelper();
 
  
 
-    $long_live_token = $fb->request('GET', '/oauth/access_token?  
-    grant_type=fb_exchange_token&  
-    client_id=145746932777961&
-    client_secret=99c46fda46782a33b98e2e3fd12c3c6f&
-    fb_exchange_token=EAACEjlonwZBkBABSxz1oIDerJumY7uz0PXbDyZC1dVdtUIZAijY5sk74TDIsjkpZAFgscNZCVg7NzwwG2ZAbTcpB2KGQttON4352tQuzVxCLmi4XjOlOUEvRs5jtibftRsgyJsEYZC8tswfDbygL9C7hPxe9e5mgvBxd9XnvsyjVgzckF7zQQcwIVywRWb2A6oZD');
+    $long_live_token = $fb->request('GET', '/oauth/access_token?grant_type=fb_exchange_token&client_id=145746932777961&client_secret=99c46fda46782a33b98e2e3fd12c3c6f&fb_exchange_token=EAACEjlonwZBkBABSxz1oIDerJumY7uz0PXbDyZC1dVdtUIZAijY5sk74TDIsjkpZAFgscNZCVg7NzwwG2ZAbTcpB2KGQttON4352tQuzVxCLmi4XjOlOUEvRs5jtibftRsgyJsEYZC8tswfDbygL9C7hPxe9e5mgvBxd9XnvsyjVgzckF7zQQcwIVywRWb2A6oZD');
 
 //     var_dump($long_live_token);
 //     echo('hellooooooooooo');
