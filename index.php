@@ -55,59 +55,58 @@ if(isset($accessToken)){
     }
     
     // Getting user facebook profile info
-    try {
-        $profileRequest = $fb->get('/me?fields=name,first_name,last_name,email,link,gender,locale,picture');
-        $fbUserProfile = $profileRequest->getGraphNode()->asArray();
-    } catch(FacebookResponseException $e) {
-        echo 'Graph returned an error: ' . $e->getMessage();
-        session_destroy();
-        // Redirect user back to app login page
-        header("Location: ./");
-        exit;
-    } catch(FacebookSDKException $e) {
-        echo 'Facebook SDK returned an error: ' . $e->getMessage();
-        exit;
-    }
+    // try {
+    //     $groupFeedResponse = $fb->request('GET', '/143498529659602/feed');
+    // } catch(FacebookResponseException $e) {
+    //     echo 'Graph returned an error: ' . $e->getMessage();
+    //     session_destroy();
+    //     // Redirect user back to app login page
+    //     header("Location: ./");
+    //     exit;
+    // } catch(FacebookSDKException $e) {
+    //     echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    //     exit;
+    // }
     
     // Initialize User class
-    $user = new User();
+    // $user = new User();
     
-    // Insert or update user data to the database
-    $fbUserData = array(
-        'oauth_provider'=> 'facebook',
-        'oauth_uid'     => $fbUserProfile['id'],
-        'first_name'    => $fbUserProfile['first_name'],
-        'last_name'     => $fbUserProfile['last_name'],
-        'email'         => $fbUserProfile['email'],
-        'gender'        => $fbUserProfile['gender'],
-        'locale'        => $fbUserProfile['locale'],
-        'picture'       => $fbUserProfile['picture']['url'],
-        'link'          => $fbUserProfile['link']
-    );
-    $userData = $user->checkUser($fbUserData);
+    // // Insert or update user data to the database
+    // $fbUserData = array(
+    //     'oauth_provider'=> 'facebook',
+    //     'oauth_uid'     => $fbUserProfile['id'],
+    //     'first_name'    => $fbUserProfile['first_name'],
+    //     'last_name'     => $fbUserProfile['last_name'],
+    //     'email'         => $fbUserProfile['email'],
+    //     'gender'        => $fbUserProfile['gender'],
+    //     'locale'        => $fbUserProfile['locale'],
+    //     'picture'       => $fbUserProfile['picture']['url'],
+    //     'link'          => $fbUserProfile['link']
+    // );
+    // $userData = $user->checkUser($fbUserData);
     
     // Put user data into session
-    $_SESSION['userData'] = $userData;
+    // $_SESSION['userData'] = $userData;
     $_SESSION['feeds'] = $fb->request('GET', '/143498529659602/feed');
 
     // Get logout url
-    $logoutURL = $helper->getLogoutUrl($accessToken, $redirectURL.'logout.php');
+    // $logoutURL = $helper->getLogoutUrl($accessToken, $redirectURL.'logout.php');
     
     // Render facebook profile data
-    if(!empty($userData)){
-        $output  = '<h1>Facebook Profile Details </h1>';
-        $output .= '<img src="'.$userData['picture'].'">';
-        $output .= '<br/>Facebook ID : ' . $userData['oauth_uid'];
-        $output .= '<br/>Name : ' . $userData['first_name'].' '.$userData['last_name'];
-        $output .= '<br/>Email : ' . $userData['email'];
-        $output .= '<br/>Gender : ' . $userData['gender'];
-        $output .= '<br/>Locale : ' . $userData['locale'];
-        $output .= '<br/>Logged in with : Facebook';
-        $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Facebook Page</a>';
-        $output .= '<br/>Logout from <a href="'.$logoutURL.'">Facebook</a>'; 
-    }else{
-        $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
-    }
+    // if(!empty($userData)){
+    //     $output  = '<h1>Facebook Profile Details </h1>';
+    //     $output .= '<img src="'.$userData['picture'].'">';
+    //     $output .= '<br/>Facebook ID : ' . $userData['oauth_uid'];
+    //     $output .= '<br/>Name : ' . $userData['first_name'].' '.$userData['last_name'];
+    //     $output .= '<br/>Email : ' . $userData['email'];
+    //     $output .= '<br/>Gender : ' . $userData['gender'];
+    //     $output .= '<br/>Locale : ' . $userData['locale'];
+    //     $output .= '<br/>Logged in with : Facebook';
+    //     $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Facebook Page</a>';
+    //     $output .= '<br/>Logout from <a href="'.$logoutURL.'">Facebook</a>'; 
+    // }else{
+    //     $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
+    // }
     
 }else{
     // Get login url
@@ -126,12 +125,12 @@ if(isset($accessToken)){
 </head>
 <body>
     <!-- Display login button / Facebook profile information -->
-    <div><?php echo $output; ?></div>
+    <div><?php echo $_SESSION['feeds']; ?></div>
     <div>
             <?php
-                echo '<pre>';
-                var_dump($_SESSION);
-                echo '</pre>';
+                // echo '<pre>';
+                // var_dump($_SESSION);
+                // echo '</pre>';
             ?>
     </div>
     <br><br><br><br><br>
