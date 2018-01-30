@@ -4,6 +4,6 @@ if(isset($_SESSION['facebook_access_token'])){
     echo $_SESSION['facebook_access_token'];
 }
 else {
-    echo "nothing in session"
+    echo "nothing in sessionsss";
 }
 ?>
