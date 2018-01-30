@@ -1,9 +1,12 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+$redirectURL   = 'https://facebook-group-test-app.herokuapp.com';
+
 $fb = new Facebook\Facebook([
-  'app_id' => '992320760924250',
-  'app_secret' => '116450a608505a304b04c7a3eeb9334e',
+  'app_id' => '145746932777961',
+  'app_secret' => '99c46fda46782a33b98e2e3fd12c3c6f',
   'default_graph_version' => 'v2.11',
   ]);
 
