@@ -4,7 +4,7 @@ if(!session_id()){
 }
 
 // Include the autoloader provided in the SDK
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Include required libraries
 use Facebook\Facebook;
