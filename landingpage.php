@@ -1,7 +1,9 @@
 <?php
 session_start();
-echo 'hi landing';
-echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
+if(isset($_SESSION['facebook_access_token'])){
+    echo $_SESSION['facebook_access_token'];
+}
+else {
+    echo "nothing in session"
+}
 ?>
