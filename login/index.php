@@ -84,7 +84,7 @@ if(isset($accessToken)){
     $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
     
     // Render facebook login button
-    $output = '<a href="'.htmlspecialchars($loginURL).'"><img src="images/fblogin-btn.png"></a>';
+    $output = '<a href="'.htmlspecialchars($loginURL).'">login</a>';
 }
 ?>
 <html>
