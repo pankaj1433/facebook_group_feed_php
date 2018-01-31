@@ -82,7 +82,7 @@ if(isset($accessToken)){
     try {
         // $group_response_one = $fb->request('GET', '/143498529659602/feed');
         // $group_response = json_decode($group_response_one, true);
-        $group_response_one = $fb->get('/143498529659602/feed',$_SESSION['facebook_access_token']);
+        $response = $fb->get('/143498529659602/feed',$_SESSION['facebook_access_token']);
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         exit;
@@ -90,7 +90,7 @@ if(isset($accessToken)){
         echo 'Facebook SDK returned an error: ' . $e->getMessage();
         exit;
       }
-    //   $group_response_one = $response->getGraphNode();
+      $group_response_one = json_decode($response, true);
 }else{
     // Get login url
     echo "REDIRect url :    ".$redirectURL;
@@ -114,6 +114,8 @@ if(isset($accessToken)){
     <div><?php var_dump($_SESSION['facebook_access_token']); ?></div>
     <br>
     <h3>GRoup response</h3>
-    <div><?php var_dump($group_response_one); ?></div>
+    <div>
+    <pre><?php print_r($group_response_one); ?></pre>
+    </div>
 </body>
 </html>
