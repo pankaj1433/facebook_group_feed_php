@@ -16,7 +16,7 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 $appId         = '145746932777961'; //Facebook App ID
 $appSecret     = '99c46fda46782a33b98e2e3fd12c3c6f'; //Facebook App Secret
-$redirectURL   = 'https://pankaj-m.herokuapp.com/login'; //Callback URL
+$redirectURL   = 'https://pankaj-m.herokuapp.com/login/callback.php'; //Callback URL
 $fbPermissions = array('email');  //Optional permissions
 
 $fb = new Facebook(array(
