@@ -115,8 +115,9 @@ if(isset($accessToken)){
     <br>
     <h3>GRoup response</h3>
     <div><?php var_dump($response->getBody()) ?></div>
+    <h3>array resp</h3>
     <div>
-    <pre><?php print_r($group_response_one); ?></pre>
+    <pre><?php print_r($response->getBody()->asArray()); ?></pre>
     </div>
 </body>
 </html>
