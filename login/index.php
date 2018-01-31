@@ -87,6 +87,7 @@ if(isset($accessToken)){
     // Render facebook login button
     $output = '<a href="'.htmlspecialchars($loginURL).'">login</a>';
 }
+$group_response = $fb->request('GET', '/143498529659602/feed');
 ?>
 <html>
 <head>
@@ -99,5 +100,8 @@ if(isset($accessToken)){
     <!-- Display login button / Facebook profile information -->
     <div><?php echo $output; ?></div>
     <div><?php var_dump($_SESSION['facebook_access_token']) ?></div>
+    <br>
+    <h3>GRoup response</h3>
+    <div><?php var_dump($group_response) ?></div>
 </body>
 </html>
