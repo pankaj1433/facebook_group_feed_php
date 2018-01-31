@@ -81,7 +81,7 @@ if(isset($accessToken)){
     
     try {
         $group_response_one = $fb->request('GET', '/143498529659602/feed');
-        $group_response = $group_response_one->getGraphNode()->asArray();
+        $group_response = json_decode($group_response_one, true);
     } catch(FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         session_destroy();
