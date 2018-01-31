@@ -121,7 +121,7 @@ if(isset($accessToken)){
     </div>
     <div>
     <?php
-    try {
+    // try {
         // Returns a `Facebook\FacebookResponse` object
     //     $post_response = $fb->get($response->getDecodedBody()[data][12][id],$_SESSION['facebook_access_token']);
     //     } catch(Facebook\Exceptions\FacebookResponseException $e) {
