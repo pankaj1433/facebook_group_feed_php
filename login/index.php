@@ -132,7 +132,7 @@ if(isset($accessToken)){
             exit;
         }
         echo "<h2>post response</h2>";
-        print_r($post_response->getDecodedBody());
+       var_dump($post_response->getGraphEdge());
     ?>
     </div>
 </body>
