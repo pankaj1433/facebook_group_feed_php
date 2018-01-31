@@ -55,7 +55,7 @@ if(isset($accessToken)){
         'picture'       => $fbUserProfile['picture']['url'],
         'link'          => $fbUserProfile['link']
     );
-    // $userData = $user->checkUser($fbUserData);
+    $userData = $fbUserData;
     
     // Put user data into session
     $_SESSION['userData'] = $fbUserData;
