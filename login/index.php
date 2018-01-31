@@ -119,5 +119,21 @@ if(isset($accessToken)){
     <div>
     <pre><?php print_r($response->getDecodedBody()[data][12]); ?></pre>
     </div>
+    <div>
+    <?php
+    try {
+        // Returns a `Facebook\FacebookResponse` object
+        $post_response = $fb->get($response->getDecodedBody()[data][12][id],$_SESSION['facebook_access_token']);
+        } catch(Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+        echo "<h2>post response</h2>";
+        print_r($post_response->getDecodedBody());
+    ?>
+    </div>
 </body>
 </html>
