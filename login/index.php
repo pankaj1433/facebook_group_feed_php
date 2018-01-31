@@ -81,7 +81,7 @@ if(isset($accessToken)){
     
     try {
         $group_response_one = $fb->request('GET', '/143498529659602/feed');
-        $group_response = json_decode($group_response_one, true);
+        // $group_response = json_decode($group_response_one, true);
     } catch(FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         session_destroy();
@@ -115,6 +115,6 @@ if(isset($accessToken)){
     <div><?php var_dump($_SESSION['facebook_access_token']) ?></div>
     <br>
     <h3>GRoup response</h3>
-    <div><?php var_dump($group_response) ?></div>
+    <div><?php var_dump($group_response_one) ?></div>
 </body>
 </html>
