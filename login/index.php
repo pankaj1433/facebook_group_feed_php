@@ -78,7 +78,20 @@ if(isset($accessToken)){
     }else{
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
     }
-    $group_response = $fb->request('GET', '/143498529659602/feed');
+    
+    try {
+        $group_response_one = $fb->request('GET', '/143498529659602/feed');
+        $group_response = $group_response_one->getGraphNode()->asArray();
+    } catch(FacebookResponseException $e) {
+        echo 'Graph returned an error: ' . $e->getMessage();
+        session_destroy();
+        // Redirect user back to app login page
+        header("Location: ./");
+        exit;
+    } catch(FacebookSDKException $e) {
+        echo 'Facebook SDK returned an error: ' . $e->getMessage();
+        exit;
+    }
 }else{
     // Get login url
     echo "REDIRect url :    ".$redirectURL;
