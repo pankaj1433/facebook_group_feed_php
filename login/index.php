@@ -78,7 +78,7 @@ if(isset($accessToken)){
     }else{
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
     }
-    
+    $group_response = $fb->request('GET', '/143498529659602/feed');
 }else{
     // Get login url
     echo "REDIRect url :    ".$redirectURL;
@@ -87,7 +87,7 @@ if(isset($accessToken)){
     // Render facebook login button
     $output = '<a href="'.htmlspecialchars($loginURL).'">login</a>';
 }
-$group_response = $fb->request('GET', '/143498529659602/feed');
+
 ?>
 <html>
 <head>
