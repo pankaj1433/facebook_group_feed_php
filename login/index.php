@@ -114,6 +114,7 @@ if(isset($accessToken)){
     <div><?php var_dump($_SESSION['facebook_access_token']); ?></div>
     <br>
     <h3>GRoup response</h3>
+    <div><?php var_dump($response) ?></div>
     <div>
     <pre><?php print_r($group_response_one); ?></pre>
     </div>
