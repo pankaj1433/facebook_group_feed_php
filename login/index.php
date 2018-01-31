@@ -82,7 +82,7 @@ if(isset($accessToken)){
     try {
         // $group_response_one = $fb->request('GET', '/143498529659602/feed');
         // $group_response = json_decode($group_response_one, true);
-        $response = $fb->get('/143498529659602/feed',$_SESSION['facebook_access_token']);
+        $response = $fb->get('/143498529659602/feed?limit=3&fields=object_id,likes.summary(true),comments.summary(true)',$_SESSION['facebook_access_token']);
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         exit;
