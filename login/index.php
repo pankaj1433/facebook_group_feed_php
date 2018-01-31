@@ -82,7 +82,7 @@ if(isset($accessToken)){
     try {
         // $group_response_one = $fb->request('GET', '/143498529659602/feed');
         // $group_response = json_decode($group_response_one, true);
-        $response = $fb->get('/143498529659602/feed?limit=3&fields=object_id,likes.summary(true),comments.summary(true)',$_SESSION['facebook_access_token']);
+        $response = $fb->get('/143498529659602/feed?fields=comments,likes',$_SESSION['facebook_access_token']);
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         exit;
@@ -117,22 +117,22 @@ if(isset($accessToken)){
     <div><?php var_dump($response->getBody()) ?></div>
     <h3>array resp</h3>
     <div>
-    <pre><?php print_r($response->getDecodedBody()[data][12]); ?></pre>
+    <pre><?php print_r($response->getDecodedBody()[data]); ?></pre>
     </div>
     <div>
     <?php
     try {
         // Returns a `Facebook\FacebookResponse` object
-        $post_response = $fb->get($response->getDecodedBody()[data][12][id],$_SESSION['facebook_access_token']);
-        } catch(Facebook\Exceptions\FacebookResponseException $e) {
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
-        } catch(Facebook\Exceptions\FacebookSDKException $e) {
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
-        }
-        echo "<h2>post response</h2>";
-       var_dump($post_response->getGraphEdge());
+    //     $post_response = $fb->get($response->getDecodedBody()[data][12][id],$_SESSION['facebook_access_token']);
+    //     } catch(Facebook\Exceptions\FacebookResponseException $e) {
+    //         echo 'Graph returned an error: ' . $e->getMessage();
+    //         exit;
+    //     } catch(Facebook\Exceptions\FacebookSDKException $e) {
+    //         echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    //         exit;
+    //     }
+    //     echo "<h2>post response</h2>";
+    //    var_dump($post_response->getGraphEdge());
     ?>
     </div>
 </body>
