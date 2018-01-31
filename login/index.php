@@ -117,7 +117,7 @@ if(isset($accessToken)){
     <div><?php var_dump($response->getBody()) ?></div>
     <h3>array resp</h3>
     <div>
-    <pre><?php print_r($response->getBody()->asArray()); ?></pre>
+    <pre><?php print_r($response->getDecodedBody()); ?></pre>
     </div>
 </body>
 </html>
