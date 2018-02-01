@@ -1,5 +1,5 @@
 <?php
-// Include FB config file && User class
+// Include FB config file.
 require_once 'fbConfig.php';
 
 if(isset($accessToken)){
@@ -27,7 +27,7 @@ if(isset($accessToken)){
     
     // Getting user facebook profile info
     try {
-        $profileRequest = $fb->get('/me?fields=name,first_name,last_name,email,link,gender,locale,picture');
+        $profileRequest = $fb->get('/me?fields=first_name,last_name');
         $fbUserProfile = $profileRequest->getGraphNode()->asArray();
     } catch(FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
@@ -39,100 +39,29 @@ if(isset($accessToken)){
         echo 'Facebook SDK returned an error: ' . $e->getMessage();
         exit;
     }
-    
-    // Initialize User class
-    // $user = new User();
-    
-    // Insert or update user data to the database
-    $fbUserData = array(
-        'oauth_provider'=> 'facebook',
-        'oauth_uid'     => $fbUserProfile['id'],
-        'first_name'    => $fbUserProfile['first_name'],
-        'last_name'     => $fbUserProfile['last_name'],
-        'email'         => $fbUserProfile['email'],
-        'gender'        => $fbUserProfile['gender'],
-        'locale'        => $fbUserProfile['locale'],
-        'picture'       => $fbUserProfile['picture']['url'],
-        'link'          => $fbUserProfile['link']
-    );
-    $userData = $fbUserData;
-    
-    // Put user data into session
-    $_SESSION['userData'] = $fbUserData;
-    
-    // Get logout url
-    // $logoutURL = $helper->getLogoutUrl($accessToken, $redirectURL.'logout.php');
-    
+
     // Render facebook profile data
-    if(!empty($userData)){
-        $output  = '<h1>Facebook Profile Details </h1>';
-        $output .= '<img src="'.$userData['picture'].'">';
-        $output .= '<br/>Facebook ID : ' . $userData['oauth_uid'];
-        $output .= '<br/>Name : ' . $userData['first_name'].' '.$userData['last_name'];
-        $output .= '<br/>Email : ' . $userData['email'];
-        $output .= '<br/>Gender : ' . $userData['gender'];
-        $output .= '<br/>Locale : ' . $userData['locale'];
-        $output .= '<br/>Logged in with : Facebook';
-        $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Facebook Page</a>';
-        // $output .= '<br/>Logout from <a href="'.$logoutURL.'">Facebook</a>'; 
+    if(!empty($fbUserProfile)){
+        //store in sql here
+        $servername = "localhost";$username = "root";$password = "";$dbname = "facebook";
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        else{
+                $sql = "INSERT INTO user_token (user_name, access_token, time)VALUES ('".$fbUserProfile['first_name']." ".$fbUserProfile['last_name']."', '".$_SESSION['facebook_access_token']."', now())";
+                if ($conn->query($sql) === TRUE) {
+                    $output = "<h3>Token Updated Successfully</h3>";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
     }else{
         $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
     }
-    
-    try {
-        // $group_response_one = $fb->request('GET', '/143498529659602/feed');
-        // $group_response = json_decode($group_response_one, true);
-        $response = $fb->get('/143498529659602/feed?fields=created_time,from,id,permalink_url,message,comments,likes,picture,attachments,reactions,sharedposts',$_SESSION['facebook_access_token']);
-    } catch(Facebook\Exceptions\FacebookResponseException $e) {
-        echo 'Graph returned an error: ' . $e->getMessage();
-        exit;
-      } catch(Facebook\Exceptions\FacebookSDKException $e) {
-        echo 'Facebook SDK returned an error: ' . $e->getMessage();
-        exit;
-      }
 }else{
-    // Get login url
-    echo "REDIRect url :    ".$redirectURL;
     $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
-    echo "<br>"."login url:  ".$loginURL."<br>";
-    // Render facebook login button
-    $output = '<a href="'.htmlspecialchars($loginURL).'">login</a>';
+    $output = '<a href="'.htmlspecialchars($loginURL).'">Update Access Token</a>';
 }
-
 ?>
-<html>
-<head>
-<title>Login with Facebook using PHP by CodexWorld</title>
-<style type="text/css">
-    h1{font-family:Arial, Helvetica, sans-serif;color:#999999;}
-</style>
-</head>
-<body>
-    <!-- Display login button / Facebook profile information -->
-    <div><?php echo $output; ?></div>
-    <div><?php var_dump($_SESSION['facebook_access_token']); ?></div>
-    <br>
-    <h3>GRoup response</h3>
-    <div><?php var_dump($response->getBody()) ?></div>
-    <h3>array resp</h3>
-    <div>
-    <pre><?php print_r($response->getDecodedBody()[data]); ?></pre>
-    </div>
-    <div>
-    <?php
-    // try {
-        // Returns a `Facebook\FacebookResponse` object
-    //     $post_response = $fb->get($response->getDecodedBody()[data][12][id],$_SESSION['facebook_access_token']);
-    //     } catch(Facebook\Exceptions\FacebookResponseException $e) {
-    //         echo 'Graph returned an error: ' . $e->getMessage();
-    //         exit;
-    //     } catch(Facebook\Exceptions\FacebookSDKException $e) {
-    //         echo 'Facebook SDK returned an error: ' . $e->getMessage();
-    //         exit;
-    //     }
-    //     echo "<h2>post response</h2>";
-    //    var_dump($post_response->getGraphEdge());
-    ?>
-    </div>
-</body>
-</html>
+<div><?php echo $output; ?></div>
