@@ -82,7 +82,7 @@ if(isset($accessToken)){
     try {
         // $group_response_one = $fb->request('GET', '/143498529659602/feed');
         // $group_response = json_decode($group_response_one, true);
-        $response = $fb->get('/143498529659602/feed?fields=comments,likes',$_SESSION['facebook_access_token']);
+        $response = $fb->get('/143498529659602/feed?fields=message,comments,likes,picture',$_SESSION['facebook_access_token']);
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
         exit;
@@ -90,7 +90,6 @@ if(isset($accessToken)){
         echo 'Facebook SDK returned an error: ' . $e->getMessage();
         exit;
       }
-      $group_response_one = json_decode($response, true);
 }else{
     // Get login url
     echo "REDIRect url :    ".$redirectURL;
